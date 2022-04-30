@@ -1,3 +1,3 @@
 # UUR
-Semestrální práce z předmětu Úvod do uživatelských rozhraní
+Semestrální práce z předmětu Úvod do uživatelských rozhraní  
 Program malování
