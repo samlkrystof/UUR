@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+group 'saml.uur'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = '16'
+    modules = ['javafx.controls', 'javafx.swing']
+}
+
+mainClassName = 'saml.uur.gui.Main'
+compileJava.options.encoding = 'UTF-8'
+
+import org.apache.tools.ant.filters.EscapeUnicode
+tasks.withType(ProcessResources).each {task ->
+    task.from(task.getSource()) {
+        include '**/*.properties'
+        filter(EscapeUnicode)
+        duplicatesStrategy = 'warn'
+    }
+}
+
+jar {
+    manifest {
+        attributes (
+                'Main-Class': mainClassName
+        )
+    }
+
+    into 'src', {
+        from sourceSets.main.allJava
+    }
+}
